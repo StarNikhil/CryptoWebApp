@@ -5,8 +5,9 @@ import Login from './Login';
 import Register from './Register';
 import Home from './components/home';
 import UserCoin from './UserCoin';
+import CoinsList from './components/CoinsList';
+import MyCoins from './components/MyCoins';
  
-
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +16,8 @@ function App() {
     <Route path="/register" element={<Register />} />
     <Route path="/home" element={<Home />} />
     <Route path="/usercoins" element={<UserCoin />} />
+    <Route path="/coinslist" element={<CoinsList />} />
+    <Route path="/mycoins" element={<MyCoins />} />
     </Routes>
     </BrowserRouter>
   );
