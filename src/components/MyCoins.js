@@ -8,7 +8,8 @@ const MyCoins = () => {
 
   useEffect(() => {
     const savedItems = JSON.parse(localStorage.getItem("savedRecords")) || [];
-    setRecords(savedItems);
+    const uniqueItems = [...new Map(savedItems.map(item => [item.id, item])).values()];
+    setRecords(uniqueItems);
   }, []);
 
   const handleSaveToDatabase = async () => {

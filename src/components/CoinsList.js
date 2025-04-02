@@ -48,18 +48,21 @@ const CoinsList = () => {
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
     localStorage.setItem("cart", JSON.stringify(cart));
-    localStorage.setItem("savedRecords", JSON.stringify(savedRecords));
+    localStorage.setItem("savedRecords", JSON.stringify([...new Map(savedRecords.map(item => [item.id, item])).values()]));
   }, [favorites, cart, savedRecords]);
 
   const updateSavedRecords = (id, isFav, isCart) => {
-    if (isFav || isCart) {
-      const selectedItem = coins.find((item) => item.id === id);
-      if (!savedRecords.some((item) => item.id === id)) {
-        setSavedRecords((prev) => [...prev, selectedItem]);
+    const selectedItem = coins.find((item) => item.id === id);
+    
+    setSavedRecords((prev) => {
+      let updatedRecords = prev.filter((item) => item.id !== id); // Remove if exists
+  
+      if (isFav || isCart) {
+        updatedRecords.push(selectedItem); // Add only once
       }
-    } else {
-      setSavedRecords((prev) => prev.filter((item) => item.id !== id));
-    }
+  
+      return updatedRecords;
+    });
   };
 
       const toggleFavorite = (id) => {
