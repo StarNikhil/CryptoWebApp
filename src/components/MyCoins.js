@@ -37,20 +37,24 @@ const MyCoins = () => {
   // ✅ Fixed API call for saving to database
   const handleSaveToDatabase = async () => {
     try {
-      console.log("Sending data:", records);
-      const filteredData = {
-        id: records.id,
-        name: records.name,
-        image: records.image,
-        symbol: records.symbol,
-        current_price: records.current_price,
-        total_volume: records.total_volume,
-        market_cap: records.market_cap
-      };      
-      debugger;
-      const response = await axios.put("http://localhost:8082/api/mycoins/update", filteredData, {
-        headers: { "Content-Type": "application/json" },
-      });
+        let filteredData = {};
+        let response;
+        console.log("Sending data:", records);
+      for(const element of records) {
+        filteredData = {
+            id: element.id,
+            name: element.name,
+            image: element.image,
+            symbol: element.symbol,
+            current_price: element.current_price,
+            total_volume: element.total_volume,
+            market_cap: element.market_cap
+          };  
+
+        response = await axios.put("http://localhost:8082/api/mycoins/update", filteredData, {
+            headers: { "Content-Type": "application/json" },
+          });
+      }
   
       if (response.status === 200) {
         alert("Data saved to database successfully!");
