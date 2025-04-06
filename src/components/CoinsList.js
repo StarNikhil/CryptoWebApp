@@ -52,15 +52,16 @@ const CoinsList = () => {
   }, [favorites, cart, savedRecords]);
 
   const updateSavedRecords = (id, isFav, isCart) => {
-    if (isFav || isCart) {
-      const selectedItem = coins.find((item) => item.id === id);
-      if (!savedRecords.some((item) => item.id === id)) {
-        setSavedRecords((prev) => [...prev, selectedItem]);
-      }
-    } else {
-      setSavedRecords((prev) => prev.filter((item) => item.id !== id));
-    }
-  };
+    setSavedRecords((prev) => {
+        const selectedItem = coins.find((item) => item.id === id);
+        if (isFav || isCart) {
+            const exists = prev.some((item) => item.id === id);
+            return exists ? prev : [...prev, selectedItem];
+        } else {
+            return prev.filter((item) => item.id !== id);
+        }
+    });
+};
 
       const toggleFavorite = (id) => {
         setFavorites((prev) => {
