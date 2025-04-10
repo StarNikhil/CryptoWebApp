@@ -7,6 +7,11 @@ import Home from './components/home';
 import UserCoin from './UserCoin';
 import CoinsList from './components/CoinsList';
 import MyCoins from './components/MyCoins';
+// import CoinChoice from "./components/CoinChoice";
+import CoinList from './components/CoinList';
+import MyCoin from './components/MyCoin';
+import MyCoinPurchase from './components/MyCoinPurchase';
+import EditCoin from './components/EditCoin';
  
 function App() {
   return (
@@ -18,6 +23,11 @@ function App() {
     <Route path="/usercoins" element={<UserCoin />} />
     <Route path="/coinslist" element={<CoinsList />} />
     <Route path="/mycoins" element={<MyCoins />} />
+   {/* <Route path="/coinchoice" element={<CoinChoice />} /> */}
+    <Route path="/coinlist" element={<CoinList />} />
+    <Route path="/mycoin" element={<MyCoin />} />
+    <Route path="/mycoinpurchase" element={<MyCoinPurchase />} />
+    <Route path="/editcoin" element={<EditCoin />} />
     </Routes>
     </BrowserRouter>
   );

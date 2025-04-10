@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const MyCoins = () => {
   const navigate = useNavigate();
+
   const [records, setRecords] = useState([]);
 
   useEffect(() => {
@@ -37,7 +38,9 @@ const MyCoins = () => {
       <Button variant="contained" onClick={() => navigate("/coinslist")}>Back to Home</Button>
       <Typography variant="h6" gutterBottom>My Coins (Saved Items)</Typography>
       {records.length === 0 ? (
-        <Typography variant="body2" color="textSecondary">No items selected.</Typography>
+        <Typography variant="body2" color="textSecondary">
+          No items selected.
+        </Typography>
       ) : (
         <List>
           {records.map((item) => (
